@@ -55,11 +55,7 @@ return [
             ],
         ],
         'admin' => [
-            [
-                'label' => 'Dashboard',
-                'route' => 'dtl-admin',
-                'icon' => '<i class="fa fa-tachometer-alt fa-fw fa-lg"></i>',
-            ],
+            
         ],
     ],
     'service_manager' => [
