@@ -1,0 +1,28 @@
+<nav class="bg-dark text-light" id="sidebar">
+    <ul class="list-unstyled sidebar-components">
+        <?php foreach ($this->container as $key => $page): ?>
+            <?php if (!$page->hasPages()): ?>
+                <li>
+                    <a href="<?= $this->url($page->route); ?>">
+                        <?= $page->icon; ?>  
+                        <?= $page->label; ?>
+                    </a>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a href="#submenu-id-<?= $key; ?>" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <?= $page->icon; ?>  
+                        <?= $page->label; ?>            
+                    </a>
+                    <ul id="submenu-id-<?= $key; ?>" class="collapse list-unstyled sidebar-components">
+                        <li>
+                            <?php foreach ($page->pages as $subpage): ?>
+                                <?= $this->navigation()->menu()->htmlify($subpage); ?>
+                            <?php endforeach; ?>
+                        </li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</nav>

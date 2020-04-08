@@ -1,0 +1,40 @@
+<?php if (!empty($this->layout()->instagramProfiles)): ?>
+    <?php foreach ($this->layout()->instagramProfiles as $profile): ?>
+        <a href="<?= $this->Url('dtl-instagram/profile', ['id' => $profile->getInstagramId()]); ?>" class="p-1">
+            <i class="fa fa-instagram fa-lg right text-danger"></i>
+            <img src="<?= $profile->getPicture(); ?>" class="rounded-circle m-0" height="36" />
+            <?= $profile->getName(); ?>
+        </a>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (!empty($this->layout()->facebookProfiles)): ?>
+    <?php foreach ($this->layout()->facebookProfiles as $profile): ?>
+        <a href="javascript: loadContent('<?=$this->url('dtl-admin/dtl-profile-manager/facebook', ['id' => $profile['id']]); ?>');" class="p-1">
+            <i class="fa fa-facebook-square fa-lg right text-primary"></i>
+            <img src="<?= $profile['picture']['data']['url'] ?>" class="rounded-circle m-0" height="36" width="36" />
+            <?= $profile['name']; ?>
+        </a>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (!empty($this->layout()->twitterProfiles)): ?>
+    <?php foreach ($this->layout()->twitterProfiles as $profile): ?>
+        <a href="<?= $this->url('dtl-twitter'); ?>" class="p-1">
+            <i class="fa fa-twitter-square fa-lg right text-info"></i>
+            <img src="<?= $profile['profile_image_url'] ?>" class="rounded-circle m-0" height="36" width="36" />
+            <?= $profile['name']; ?>
+        </a>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (!empty($this->layout()->tumblrProfiles)): ?>
+    <?php foreach ($this->layout()->tumblrProfiles as $profile): ?>
+        <a href="<?= $this->url('dtl-tumblr'); ?>" class="p-1">
+            <i class="fa fa-tumblr-square fa-lg right text-secondary"></i>
+            <!--<img src="<?= '' ?>" class="rounded-circle m-0" height="36" width="36" />-->
+            <?= $profile['user']['name']; ?>
+        </a>
+    <?php endforeach; ?>
+<?php endif; ?>
+<?php

@@ -1,0 +1,38 @@
+<?php
+$paginationInfo = $this->placeholder('pagination');
+//var_dump($paginationInfo->params);exit;
+$baseUrl = $this->url($paginationInfo->route, $paginationInfo->params);
+?>
+<span class="text float-right">Mostrando <?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?> de <?php echo $this->totalItemCount; ?></span>
+<nav aria-label="Page navigation example">
+    <?php if ($this->pageCount): ?>
+        <ul class="pagination">
+            <!-- Previous page link -->
+            <?php if (isset($this->previous)): ?>
+                <li class="page-item"><a class="page-link" href="<?php echo $baseUrl; ?>/<?php echo $this->first ?>">&lsaquo;</a></li>
+                <li class="page-item"><a class="page-link" href="<?php echo $baseUrl; ?>/<?php echo $this->previous ?>">&laquo;</a></li>
+            <?php else: ?>
+                <li class="page-item disabled"><a class="page-link" href="#">&lsaquo;</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+            <?php endif; ?>
+
+            <!-- Numbered page links -->
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <?php if ($page != $this->current): ?>
+                    <li class="page-item"><a class="page-link" href="<?php echo $baseUrl ?>/<?php echo $page ?>"><?php echo $page; ?></a></li>
+                <?php else: ?>
+                    <li class="page-item active"><a class="page-link" href="#"><?php echo $page; ?><span class="sr-only">(current)</span></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+            <!-- Next page link -->
+            <?php if (isset($this->next)): ?>
+                <li class="page-item"><a class="page-link" href="<?php echo $baseUrl; ?>/<?php echo $this->next ?>">&raquo;</a></li>
+                <li class="page-item"><a class="page-link" href="<?php echo $baseUrl; ?>/<?php echo $this->last ?>">&rsaquo;</a></li>
+            <?php else: ?>
+                <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#">&rsaquo;</a></li>
+            <?php endif; ?>
+        </ul>
+    <?php endif; ?>
+</nav>
