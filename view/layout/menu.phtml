@@ -1,28 +1,23 @@
-<nav class="bg-dark text-light" id="sidebar">
-    <ul class="list-unstyled sidebar-components">
-        <?php foreach ($this->container as $key => $page): ?>
-            <?php if (!$page->hasPages()): ?>
-                <li>
-                    <a href="<?= $this->url($page->route); ?>">
-                        <?= $page->icon; ?>  
-                        <?= $page->label; ?>
+<?php foreach ($this->container as $key => $page): ?>
+    <?php if (!$page->hasPages()): ?>
+        <li class="nav-item">
+            <a href="<?= $this->url($page->route); ?>" class="nav-link <?= $page->class; ?>" >
+                <?= $page->icon; ?>  
+                <?= $page->label; ?>
+            </a>
+        </li>
+    <?php else: ?>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dtlNavbarDropdown<?= $key; ?>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?= $page->label; ?>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dtlNavbarDropdown<?= $key; ?>">
+                <?php foreach ($page->pages as $subpage): ?>
+                    <a href="<?=$subpage->getHref();?>" class="dropdown-item">
+                        <?=$subpage->getLabel();?>
                     </a>
-                </li>
-            <?php else: ?>
-                <li>
-                    <a href="#submenu-id-<?= $key; ?>" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <?= $page->icon; ?>  
-                        <?= $page->label; ?>            
-                    </a>
-                    <ul id="submenu-id-<?= $key; ?>" class="collapse list-unstyled sidebar-components">
-                        <li>
-                            <?php foreach ($page->pages as $subpage): ?>
-                                <?= $this->navigation()->menu()->htmlify($subpage); ?>
-                            <?php endforeach; ?>
-                        </li>
-                    </ul>
-                </li>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </ul>
-</nav>
+                <?php endforeach; ?>
+            </div>
+        </li>
+    <?php endif; ?>
+<?php endforeach; ?>

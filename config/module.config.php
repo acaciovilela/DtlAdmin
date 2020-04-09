@@ -55,7 +55,11 @@ return [
             ],
         ],
         'admin' => [
-            
+            [
+                'label' => 'Dashboard',
+                'route' => 'dtl-admin',
+                'class' => ' active'
+            ],
         ],
     ],
     'service_manager' => [
