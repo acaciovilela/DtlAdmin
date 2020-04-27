@@ -1,6 +1,5 @@
 <?php
 $paginationInfo = $this->placeholder('pagination');
-//var_dump($paginationInfo->params);exit;
 $baseUrl = $this->url($paginationInfo->route, $paginationInfo->params);
 ?>
 <span class="text float-right">Mostrando <?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?> de <?php echo $this->totalItemCount; ?></span>

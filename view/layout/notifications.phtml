@@ -1,0 +1,44 @@
+<?php
+$messages = [];
+$bgColorClass = 'bg-primary';
+$icon = '<i class="fas fa-bug fa-2x"></i>';
+$flashMessenger = $this->flashMessenger();
+if ($flashMessenger->hasSuccessMessages()) {
+    $messages = $flashMessenger->getSuccessMessages();
+    $bgColorClass = 'bg-success';
+    $icon = '<i class="fas fa-check-circle fa-2x"></i>';
+} elseif ($flashMessenger->hasInfoMessages()) {
+    $messages = $flashMessenger->getInfoMessages();
+    $bgColorClass = 'bg-info';
+    $icon = '<i class="fas fa-info-circle fa-2x"></i>';
+} elseif ($flashMessenger->hasErrorMessages()) {
+    $messages = $flashMessenger->getErrorMessages();
+    $bgColorClass = 'bg-danger';
+    $icon = '<i class="fas fa-times-circle fa-2x"></i>';
+} elseif ($flashMessenger->hasWarningMessages()) {
+    $messages = $flashMessenger->getWarningMessages();
+    $bgColorClass = 'bg-warning';
+    $icon = '<i class="fas fa-exclamation-circle fa-2x"></i>';
+} else {
+    $messages = $flashMessenger->getMessages();
+    $bgColorClass = 'bg-dark';
+    $icon = '<i class="fas fa-bug fa-2x"></i>';
+}
+?>
+<?php if (count($messages)): ?>
+    <!-- Flexbox container for aligning the toasts -->
+    <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="position: absolute; z-index: 1100">
+        <div class="fixed-bottom" style="position: relative;">
+            <?php foreach ($messages as $message): ?>
+                <div role="alert" class="toast <?= $bgColorClass; ?> text-white" style="min-width: 300px;" data-autohide="true" data-delay="3000">
+                    <div class="toast-header <?= $bgColorClass; ?> text-white">
+                        <strong class="mr-auto"><?= $icon; ?></strong>
+                    </div>
+                    <div class="toast-body">
+                        <?php echo $message; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>

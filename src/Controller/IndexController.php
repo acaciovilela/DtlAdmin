@@ -1,15 +1,10 @@
 <?php
 
-/**
- * @link      http://github.com/zendframework/DtlAdmin for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Laminas Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
 namespace DtlAdmin\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
 use Doctrine\ORM\EntityManager;
+use Laminas\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController {
 
@@ -19,7 +14,7 @@ class IndexController extends AbstractActionController {
     protected $entityManager;
 
     public function indexAction() {
-        
+        return new ViewModel();
     }
 
     /**

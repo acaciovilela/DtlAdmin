@@ -34,9 +34,12 @@
                 ->setSeparator(' ▶' . PHP_EOL)
                 ->setPartial('breadcrumbs');
         ?>
+        <?= $this->partial('notifications'); ?>
         <div class="container">
             <?= $this->content ?>
+            <?= $this->partial('modals'); ?>
         </div>
+
         <?=
                 $this->inlineScript()
                 ->prependFile($this->basePath('dartalla/js/app.js'))

@@ -21,6 +21,7 @@ class Module {
     public function onBootstrap(MvcEvent $e) {
         $em = $e->getApplication()->getEventManager();
         $em->attach('dispatch', array($this, 'changeLayout'), 1);
+        $em->attach('dispatch', array($this, 'notifications'), 1);
     }
 
     public function changeLayout(MvcEvent $e) {
@@ -45,6 +46,18 @@ class Module {
 
         $viewModel = $e->getViewModel();
         $viewModel->setTemplate($layout);
+    }
+    
+    public function notifications(MvcEvent $e) {
+        $match = $e->getRouteMatch();
+
+        if (!($match instanceof V2RouteMatch || $match instanceof V3RouteMatch) || 0 !== strpos($match->getMatchedRouteName(), 'dtl-admin')) {
+            return;
+        }
+        
+        $flashMessenger = $e->getTarget()->flashMessenger();
+        
+        
     }
 
 }
